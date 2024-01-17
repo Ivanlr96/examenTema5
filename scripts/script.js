@@ -1,6 +1,6 @@
 /*
 @autor: Iván Lorenzo Ruiz
-github:
+github: https://github.com/Ivanlr96/examenTema5
 */
 
 const formulario = document.querySelector("#formulario")
@@ -19,18 +19,20 @@ function validar(evento) {
     erroresMensaje = []
 
     nombre.value.trim().length === 0 && erroresMensaje.push("El nombre no puede estar vacio")
+    !/^[A-zA-Z0-9]*$/.test(nombre.value.trim()) && erroresMensaje.push("El nombre no es válido")
     console.log(nombre.value)
 
     correo.value.trim().length === 0 && erroresMensaje.push("El correo no puede estar vacio")
+    !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(correo.value.trim()) && erroresMensaje.push("El correo no es válido")
     
     mensaje.value.trim().length<10 && erroresMensaje.push("El mensaje es demasiado corto")
 
     info.addEventListener("click", () => {
         if (solicitud.value==="solicitud") {
-          alert("mensaje1")
+            alert("mensaje1")
         }
-        if (reserva.value==="reserva") {
-          alert("mensaje2")
+        if (solicitud.value==="reserva") {
+            alert("mensaje2")
         }
     })
 
@@ -38,7 +40,7 @@ function validar(evento) {
         formulario.submit()
     } else if (erroresMensaje.length > 0) {
        
-    
+        errores.textContent=""
         erroresMensaje.forEach(function (mensaje) {
   
             erroresMensaje.textContent = ""
